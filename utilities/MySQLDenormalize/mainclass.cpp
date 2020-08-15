@@ -568,7 +568,7 @@ void mainClass::parseDataToMongo(mongocxx::collection collection, QString table,
 int mainClass::generateJSONs(QSqlDatabase db)
 {
     QString sql;
-    sql = "SELECT table_name,column_name,REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME FROM information_schema.KEY_COLUMN_USAGE WHERE table_schema = '" + db.databaseName() + "' GROUP BY table_name,column_name,REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME";
+    sql = "SELECT table_name,column_name,REFERENCED_TABLE_NAME,REFERENCED_COLUMN_NAME FROM information_schema.KEY_COLUMN_USAGE WHERE table_schema = '" + db.databaseName().toLower() + "' GROUP BY table_name,REFERENCED_TABLE_NAME";
 
     //Here we get the tables and their relationships from the schema
     QList <TtableDef> tables;
